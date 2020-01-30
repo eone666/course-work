@@ -1,0 +1,26 @@
+{
+  "name": "course-work",
+  "version": "1.0.0",
+  "description": "My course work",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "author": "Ivan Avdeyev <eone.ukg@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "cli-color": "^2.0.0",
+    "config": "^3.2.5",
+    "ejs": "^3.0.1",
+    "ejs-locals": "^1.0.2",
+    "express": "^4.17.1",
+    "formidable": "^1.2.1",
+    "ip": "^1.1.5",
+    "mongoose": "^5.8.10"
+  }
+}
