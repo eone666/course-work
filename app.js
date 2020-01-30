@@ -34,7 +34,7 @@ app.use("/monument", require("./routes/monument.routes"));
 
 (async function start() {
   try {
-    await mongoose.connect(config.get("mongoUri"), {
+    await mongoose.connect(config.get("mongoUrl"), {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true

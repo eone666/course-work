@@ -1,6 +1,6 @@
 {
     "port":80,
-    "mongoUri":"mongodb+srv://admin:EJc2oPA7I6bnZ6SJ@course-work-l3uw2.mongodb.net/test?retryWrites=true&w=majority",
+    "mongoUrl":"mongodb+srv://admin:EJc2oPA7I6bnZ6SJ@course-work-l3uw2.mongodb.net/test?retryWrites=true&w=majority",
     "mongoUser":"admin",
     "mongoPassword":"EJc2oPA7I6bnZ6SJ"
 }
