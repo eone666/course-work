@@ -1,12 +1,20 @@
 <%- include('./header.ejs'); %>
+<br>
+<h1>Добавить памятник</h1>
+<br>
+<% errors.map((e,i)=>{ %>
+    <div class="alert alert-primary">
+    <%= e.msg %> 
+    </div>
+<% }) %> 
 <form action="" method="POST">
     <div class="form-group">
         <label for="name">Название памятника</label>
-        <input type="text" class="form-control" id="name" name="name">
+        <input type="text" class="form-control" id="name" name="name" required>
     </div>
     <div class="form-group">
         <label for="region">Регион</label>
-        <input type="text" class="form-control" id="region" name="region">
+        <input type="text" class="form-control" id="region" name="region" required>
     </div>
     <div class="form-group">
         <label for="creator">Создатель</label>

@@ -4,7 +4,7 @@ const schema = new Schema({
   name: { type: String, required: true },
   region: { type: String, required: true },
   creator: { type: String },
-  createdDate: { type: Date },
+  createdDate: { type: String },
   condition: { type: String }
 });
 

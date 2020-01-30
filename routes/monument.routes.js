@@ -1,25 +1,83 @@
 const { Router } = require("express");
+const { check, validationResult } = require('express-validator');
 
 const Monument = require('../models/Monument')
 
 const router = Router();
 
 router.get("/", (req, res) => {
-  res.render("articles-list");
+  try {
+    const list = Monument.find().then(monuments => {
+      res.render("list", { monuments });
+    });
+  } catch (error) {
+    res.status(500).send('Что то пошло не так((');
+  }
 });
 
 router.get("/add", (req, res) => {
-  
-  res.render("monument-add");
+  try {
+    res.render("add", { errors: [] });
+  } catch (error) {
+    res.status(500).send('Что то пошло не так((');
+  }
 });
 
-router.post('/add', (req, res) => {
-  const { name, region, creator, creadedDate, condition } = req.body;
-  res.redirect('/monument');
+router.post('/add', [
+  check('name', "Введите имя памятника").not().isEmpty(),
+  check('region', 'Введите местоположение памятника').not().isEmpty()
+], (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render('add', { errors: errors.array() });
+    }
+    const monument = new Monument(req.body);
+    monument.save();
+    res.redirect(`/`);
+  } catch (error) {
+    res.status(500).send('Что то пошло не так((');
+  }
 })
 
-router.get("/:id", (req, res) => {
-    res.send(req.params.id);
+router.get("/edit/:id", (req, res) => {
+  try {
+    Monument.findById(req.params.id).then((data) => {
+      res.render('edit', { data, errors: [] });
+    })
+  } catch (error) {
+    res.status(500).send('Что то пошло не так((');
+  }
+});
+
+router.post('/edit/:id', [
+  check('name', "Введите имя памятника").not().isEmpty(),
+  check('region', 'Введите местоположение памятника').not().isEmpty()
+], (req, res) => {
+  try {
+    Monument.findById(req.params.id).then(data => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).render('edit', { data, errors: errors.array() });
+      }
+    })
+    Monument.findByIdAndUpdate(req.params.id,req.body).then(()=>{
+      res.redirect('/');
+    })
+  } catch (error) {
+    res.status(500).send('Что то пошло не так((');
+  }
+})
+
+
+router.get("/delete/:id", (req, res) => {
+  try {
+    Monument.findByIdAndDelete(req.params.id).then(() => {
+      res.redirect('/')
+    })
+  } catch (error) {
+    res.status(500).send('Что то пошло не так((');
+  }
 });
 
 module.exports = router;

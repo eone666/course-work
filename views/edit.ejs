@@ -1,0 +1,35 @@
+<%- include('./header.ejs'); %>
+<br>
+<h1>Изменить памятник</h1>
+<br>
+<% errors.map((e,i)=>{ %>
+    <div class="alert alert-primary">
+    <%= e.msg %> 
+    </div>
+<% }) %> 
+<form action="" method="POST">
+    <div class="form-group">
+        <label for="name">Название памятника</label>
+        <input type="text" class="form-control" id="name" name="name" value="<%= data.name %>" required>
+    </div>
+    <div class="form-group">
+        <label for="region">Регион</label>
+        <input type="text" class="form-control" id="region" name="region" value="<%= data.region %>" required>
+    </div>
+    <div class="form-group">
+        <label for="creator">Создатель</label>
+        <input type="text" class="form-control" id="creator" name="creator" value="<%= data.creator %>">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Дата создания</label>
+        <input type="date" class="form-control" id="createdDate" name="createdDate" value="<%= data.createdDate %>">
+    </div>
+    <div class="form-group">
+        <label for="сondition">Состояние</label>
+        <input type="text" class="form-control" id="condition" name="condition" value="<%= data.condition %>">
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Изменить">
+    </div><!-- /.form-group -->
+</form>
+<%- include('./footer.ejs'); %>

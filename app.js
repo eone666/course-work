@@ -3,12 +3,12 @@ const config = require("config");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
 const ip = require("ip");
-const clc = require("cli-color");
-const formidable = require("formidable");
 
 const app = express();
 
 const PORT = config.get("port") || 3000;
+
+mongoose.set('useFindAndModify', false);
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -26,11 +26,7 @@ app.set("view engine", "ejs");
 
 app.set("views", __dirname + "/views");
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
-app.use("/monument", require("./routes/monument.routes"));
+app.use("/", require("./routes/monument.routes"));
 
 (async function start() {
   try {
@@ -47,8 +43,6 @@ app.use("/monument", require("./routes/monument.routes"));
 app.listen(
   PORT,
   console.log(
-    clc.bgWhite.black(
-      `http://localhost:${PORT}\nhttp://${ip.address()}:${PORT}`
-    )
+    `http://localhost:${PORT}\nhttp://${ip.address()}:${PORT}`
   )
 );

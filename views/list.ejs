@@ -1,0 +1,32 @@
+<%- include('./header.ejs'); %> 
+<br>
+<h1>Список памятников</h1>
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Название</th>
+            <th scope="col">Регион</th>
+            <th scope="col">Создатель</th>
+            <th scope="col">Дата создания</th>
+            <th scope="col">Состояние</th>
+            <th scope="col">Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% monuments.map((e,i)=>{ %>
+        <tr>
+            <td><%= e.name %></td>
+            <td><%= e.region %></td>
+            <td><%= e.creator %></td>
+            <td><%= e.createdDate %></td>
+            <td><%= e.condition %></td>
+            <td>
+                <a href="edit/<%= e.id %> ">Изменить</a><br>
+                <a href="delete/<%= e.id %> ">Удалить</a>
+            </td>
+        </tr>
+        <% }) %>
+    </tbody>
+</table>
+<%- include('./footer.ejs'); %>
