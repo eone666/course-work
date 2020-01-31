@@ -18,7 +18,7 @@ app.use(
   })
 );
 
-app.use("/static", express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/public"));
 
 app.use("/libs", express.static(__dirname + "/node_modules"));
 
@@ -27,6 +27,10 @@ app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 
 app.use("/", require("./routes/monument.routes"));
+
+app.use((req, res) => {
+  return res.render('404');
+});
 
 (async function start() {
   try {

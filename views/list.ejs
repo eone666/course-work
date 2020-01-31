@@ -22,8 +22,10 @@
             <td><%= e.createdDate %></td>
             <td><%= e.condition %></td>
             <td>
-                <a href="edit/<%= e.id %> ">Изменить</a><br>
-                <a href="delete/<%= e.id %> ">Удалить</a>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a href="edit/<%= e.id %> " class="btn btn-secondary"><i class="fas fa-edit"></i></a>    
+                    <a href="delete/<%= e.id %> " class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                </div>
             </td>
         </tr>
         <% }) %>

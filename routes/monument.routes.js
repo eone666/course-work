@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
       res.render("list", { monuments });
     });
   } catch (error) {
-    res.status(500).send('Что то пошло не так((');
+    res.render('500');
   }
 });
 
@@ -19,7 +19,7 @@ router.get("/add", (req, res) => {
   try {
     res.render("add", { errors: [] });
   } catch (error) {
-    res.status(500).send('Что то пошло не так((');
+    res.render('500');
   }
 });
 
@@ -36,7 +36,7 @@ router.post('/add', [
     monument.save();
     res.redirect(`/`);
   } catch (error) {
-    res.status(500).send('Что то пошло не так((');
+    res.render('500');
   }
 })
 
@@ -46,7 +46,7 @@ router.get("/edit/:id", (req, res) => {
       res.render('edit', { data, errors: [] });
     })
   } catch (error) {
-    res.status(500).send('Что то пошло не так((');
+    res.render('500');
   }
 });
 
@@ -65,7 +65,7 @@ router.post('/edit/:id', [
       res.redirect('/');
     })
   } catch (error) {
-    res.status(500).send('Что то пошло не так((');
+    res.render('500');
   }
 })
 
@@ -76,7 +76,7 @@ router.get("/delete/:id", (req, res) => {
       res.redirect('/')
     })
   } catch (error) {
-    res.status(500).send('Что то пошло не так((');
+    res.render('500');
   }
 });
 
