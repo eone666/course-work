@@ -28,6 +28,8 @@ app.set("views", __dirname + "/views");
 
 app.use("/", require("./routes/monument.routes"));
 
+app.use('/regions',require('./routes/region.routes'));
+
 app.use((req, res) => {
   return res.render('404');
 });

@@ -1,0 +1,37 @@
+<%- include('./header.ejs'); %>
+<br />
+<h1>Регионы</h1>
+<br />
+<% errors.map(e=>{ %> 
+<div class="alert alert-danger"><%= e.msg %></div>
+<% }) %> 
+<ul class="list-group">
+    <% regions.map(e=>{ %> 
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <span><%= e.name %> </span>
+    <a href="/regions/delete/<%= e.id %> " class="btn btn-outline-danger"
+      ><i class="fas fa-trash-alt"></i
+    ></a>
+  </li>
+  <% }) %> 
+  <li class="list-group-item">
+    <form action="" method="POST">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="Введите название региона"
+          required
+        />
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </form> 
+  </li>
+</ul>
+<%- include('./footer.ejs'); %>
