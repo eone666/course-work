@@ -8,4 +8,4 @@ const schema = new Schema({
   condition: { type: String }
 });
 
-module.exports = model("monument", schema);
+module.exports = model("Monument", schema);

@@ -5,9 +5,9 @@ const Monument = require('../models/Monument')
 
 const router = Router();
 
-router.get("/", (req, res) => {
+router.get("/",async (req, res) => {
   try {
-    const list = Monument.find().then(monuments => {
+    await Monument.find().then(monuments => {
       res.render("list", { monuments });
     });
   } catch (error) {
@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
   }
 });
 
-router.get("/add", (req, res) => {
+router.get("/add",async (req, res) => {
   try {
     res.render("add", { errors: [] });
   } catch (error) {
@@ -26,7 +26,7 @@ router.get("/add", (req, res) => {
 router.post('/add', [
   check('name', "Введите имя памятника").not().isEmpty(),
   check('region', 'Введите местоположение памятника').not().isEmpty()
-], (req, res) => {
+], async (req, res) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -40,10 +40,12 @@ router.post('/add', [
   }
 })
 
-router.get("/edit/:id", (req, res) => {
+router.get("/edit/:id",async (req, res) => {
   try {
-    Monument.findById(req.params.id).then((data) => {
+    await Monument.findById(req.params.id).then((data) => {
       res.render('edit', { data, errors: [] });
+    }).catch(()=>{
+      res.render('404')
     })
   } catch (error) {
     res.render('500');
@@ -53,15 +55,17 @@ router.get("/edit/:id", (req, res) => {
 router.post('/edit/:id', [
   check('name', "Введите имя памятника").not().isEmpty(),
   check('region', 'Введите местоположение памятника').not().isEmpty()
-], (req, res) => {
+], async (req, res) => {
   try {
-    Monument.findById(req.params.id).then(data => {
+    await Monument.findById(req.params.id).then(data => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).render('edit', { data, errors: errors.array() });
       }
+    }).catch(()=>{
+      res.render('404')
     })
-    Monument.findByIdAndUpdate(req.params.id,req.body).then(()=>{
+   await Monument.findByIdAndUpdate(req.params.id,req.body).then(()=>{
       res.redirect('/');
     })
   } catch (error) {
@@ -70,10 +74,12 @@ router.post('/edit/:id', [
 })
 
 
-router.get("/delete/:id", (req, res) => {
+router.get("/delete/:id",async (req, res) => {
   try {
-    Monument.findByIdAndDelete(req.params.id).then(() => {
+    await Monument.findByIdAndDelete(req.params.id).then(() => {
       res.redirect('/')
+    }).catch(()=>{
+      res.render('404')
     })
   } catch (error) {
     res.render('500');
