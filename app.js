@@ -1,5 +1,4 @@
 const express = require("express");
-const config = require("config");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
 const ip = require("ip");
