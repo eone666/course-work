@@ -6,7 +6,9 @@ const ip = require("ip");
 
 const app = express();
 
-const PORT = config.get("port") || 3000;
+const PORT = process.env.PORT || 3000;
+
+const MONGO_URL = process.env.MONGO_URL;
 
 mongoose.set('useFindAndModify', false);
 
@@ -38,7 +40,7 @@ app.use((req, res) => {
 
 (async function start() {
   try {
-    await mongoose.connect(config.get("mongoUrl"), {
+    await mongoose.connect(MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true
