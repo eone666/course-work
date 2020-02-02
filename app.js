@@ -30,6 +30,8 @@ app.use("/", require("./routes/monument.routes"));
 
 app.use('/regions',require('./routes/region.routes'));
 
+app.use('/conditions',require('./routes/condition.routes'));
+
 app.use((req, res) => {
   return res.render('404');
 });

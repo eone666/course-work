@@ -1,14 +1,14 @@
 const { Router } = require("express");
 const { check, validationResult } = require("express-validator");
 
-const Region = require("../models/Region");
+const Condition = require("../models/Condition");
 
 const router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    await Region.find().then(data => {
-      res.render("settings", { h1:'Регионы',route:'regions', errors: [], data });
+    await Condition.find().then(data => {
+      res.render("settings", { h1:'Состояния', route:'conditions', errors: [], data });
     });
   } catch (error) {
     res.render("500");
@@ -18,22 +18,22 @@ router.get("/", async (req, res) => {
 router.post(
   "/",
   [
-    check("name", "Введите название региона")
+    check("name", "Введите название состояния")
       .not()
       .isEmpty()
   ],
   async (req, res) => {
     try {
-      Region.find().then(data => {
+      Condition.find().then(data => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
           return res
             .status(400)
-            .render("settings", { h1:'Регионы',route:'regions',errors: errors.array(), data });
+            .render("settings", { h1:'Регионы',route:'conditions',errors: errors.array(), data });
         }
-        const region = new Region(req.body);
-        region.save();
-        res.redirect(`/regions`);
+        const condition = new Condition(req.body);
+        condition.save();
+        res.redirect(`/conditions`);
       });
     } catch (error) {
       res.render("500");
@@ -43,8 +43,8 @@ router.post(
 
 router.get("/delete/:id", async (req, res) => {
     try {
-      await Region.findByIdAndDelete(req.params.id).then(()=>{
-          res.redirect('/regions');
+      await Condition.findByIdAndDelete(req.params.id).then(()=>{
+          res.redirect('/conditions');
       });
     } catch (error) {
       res.render("500");

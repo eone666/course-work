@@ -2,10 +2,10 @@ const { Schema, model } = require("mongoose");
 
 const schema = new Schema({
   name: { type: String, required: true },
-  region: { type: Schema.Types.ObjectId, ref:'Region', required: true },
+  region: { type: Schema.Types.ObjectId, ref:'Region' },
   creator: { type: String },
   createdDate: { type: String },
-  condition: { type: String }
+  condition: { type: Schema.Types.ObjectId, ref:'Condition' }
 });
 
 module.exports = model("Monument", schema);

@@ -20,7 +20,7 @@
             <td><%= !e.region ? 'Регион удален' : e.region.name %> </td>
             <td><%= e.creator %></td>
             <td><%= e.createdDate %></td>
-            <td><%= e.condition %></td>
+            <td><%= !e.condition ? 'Состояние удалено' : e.condition.name %></td>
             <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <a href="edit/<%= e.id %> " class="btn btn-secondary"><i class="fas fa-edit"></i></a>    
