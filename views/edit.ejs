@@ -32,7 +32,7 @@
         <label for="сondition">Состояние</label>
         <select class="form-control" name="condition" id="condition">
             <% conditions.map(e=>{ %>
-            <option value="<%= e.id %>" <% if(e.id == data.region){ %> selected <% } %> ><%= e.name %> </option>
+            <option value="<%= e.id %>" <% if(e.id == data.condition){ %> selected <% } %> ><%= e.name %> </option>
             <% }) %> 
           </select>
     </div>
