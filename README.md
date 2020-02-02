@@ -4,13 +4,11 @@
 
 `npm install`
 ### config
-create file default.json in config folder
-```json
-{
-    "port":<port>,
-    "mongoUrl":<MongoURL>
-}
-```
+procces env variables
+
+`MONGO_URL=[your mongo url]`
+
+`PORT=[default is 3000]`
 ## commands
 `npm run start` - start production server
 
