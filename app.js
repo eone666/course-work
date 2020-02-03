@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
 const ip = require("ip");
-const FroalaEditor = require("wysiwyg-editor-node-sdk/lib/froalaEditor");
 
 const app = express();
 
