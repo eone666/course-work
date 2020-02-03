@@ -101,7 +101,7 @@ router.post(
         });
       await Monument.findByIdAndUpdate(req.params.id, req.body)
         .then(() => {
-          res.redirect("/");
+          res.redirect("/view/"+req.params.id);
         })
         .catch(error => {
           res.render("404");
@@ -125,5 +125,21 @@ router.get("/delete/:id", async (req, res) => {
     res.render("500");
   }
 });
+
+router.get("/view/:id",async (req,res)=>{
+  try {
+    await Monument.findById(req.params.id)
+      .populate('region')
+      .populate('condition')
+      .then(data => {
+        res.render('view',{data});
+      })
+      .catch(() => {
+        res.render("404");
+      });
+  } catch (error) {
+    res.render("500");
+  }
+})
 
 module.exports = router;

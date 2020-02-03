@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
 const ip = require("ip");
+const FroalaEditor = require("wysiwyg-editor-node-sdk/lib/froalaEditor");
 
 const app = express();
 
@@ -9,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 const MONGO_URL = process.env.MONGO_URL;
 
-mongoose.set('useFindAndModify', false);
+mongoose.set("useFindAndModify", false);
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -29,12 +30,12 @@ app.set("views", __dirname + "/views");
 
 app.use("/", require("./routes/monument.routes"));
 
-app.use('/regions',require('./routes/region.routes'));
+app.use("/regions", require("./routes/region.routes"));
 
-app.use('/conditions',require('./routes/condition.routes'));
+app.use("/conditions", require("./routes/condition.routes"));
 
 app.use((req, res) => {
-  return res.render('404');
+  return res.render("404");
 });
 
 (async function start() {
@@ -51,7 +52,5 @@ app.use((req, res) => {
 
 app.listen(
   PORT,
-  console.log(
-    `http://localhost:${PORT}\nhttp://${ip.address()}:${PORT}`
-  )
+  console.log(`http://localhost:${PORT}\nhttp://${ip.address()}:${PORT}`)
 );

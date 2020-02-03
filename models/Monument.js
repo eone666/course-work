@@ -5,7 +5,8 @@ const schema = new Schema({
   region: { type: Schema.Types.ObjectId, ref:'Region' },
   creator: { type: String },
   createdDate: { type: String },
-  condition: { type: Schema.Types.ObjectId, ref:'Condition' }
+  condition: { type: Schema.Types.ObjectId, ref:'Condition' },
+  description: {type: String}
 });
 
 module.exports = model("Monument", schema);
