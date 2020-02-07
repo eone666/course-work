@@ -1,4 +1,5 @@
 # course-work
+![Node.js CI](https://github.com/eone666/course-work/workflows/Node.js%20CI/badge.svg?branch=master)
 ## installation
 `git clone https://github.com/eone666/course-work`
 
