@@ -55,7 +55,7 @@ router.post(
       }
       const monument = new Monument(req.body);
       monument.save();
-      res.redirect("/");
+      res.redirect("/view/"+monument.id);
     } catch (error) {
       res.render("500");
     }
