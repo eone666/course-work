@@ -10,7 +10,7 @@
   "author": "Ivan Avdeyev <eone.ukg@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.20"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",
